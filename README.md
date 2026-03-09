@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
 <h3>Name: JANANI K</h3>
-<h3>Register Number:212224230102 </h3>
+<h3>Register Number: 212224230102</h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -54,6 +54,33 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
+## PROGRAM 
+```
+from collections import defaultdict
+
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+    for neighbour in graph[start]:
+        if not visited[neighbour]:  
+            dfs(graph, neighbour, visited, path)  
+    return path
+
+graph = defaultdict(list)
+n, e = map(int, input().split())  
+for i in range(e):
+    u, v = input().split()  
+    graph[u].append(v)  
+    graph[v].append(u)  
+
+start = list(graph.keys())[0]  
+visited = defaultdict(bool)
+path = []
+print("Sample Output:")
+traversed_path = dfs(graph, start, visited, path)
+print(traversed_path)
+```
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -70,35 +97,12 @@ F H <BR>
 <hr>
 <h3>Sample Output</h3>
 <hr>
-['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
+<img width="451" height="273" alt="image" src="https://github.com/user-attachments/assets/e7b1b5cb-35d6-47ed-8f64-2459d0380b82" />
+
 <hr>
 
-## PROGRAM:
-```
-from collections import defaultdict
-def dfs(graph,start,visited,path):
-    path.append(start)
-    visited[start]=True
-    for neighbour in graph[start]:
-        if visited[neighbour]==False:
-            dfs(graph,neighbour,visited,path)
-            visited[neighbour]=True
-    return path
-graph=defaultdict(list)
-nodes,edges=map(int,input().split())
-for _ in range(edges):
-    u,v=map(str,input().split())
-    #G.add_edge(u,v)
-    graph[u].append(v)
-    graph[v].append(u)
-start=input()
-visited=defaultdict(bool)
-path=[]
-traversedpath=dfs(graph,start,visited,path)
-print(traversedpath)
-```
 <hr>
-<h3>Input</h3>
+<h3>Sample Input</h3>
 <hr>
 5 5 <BR>
 0 1 <BR>
@@ -107,9 +111,10 @@ print(traversedpath)
 2 3 <BR>
 2 4 <BR>
 <hr>
-<h3>Output</h3>
+<h3>Sample Output</h3>
 <hr>
-['0', '1', '2', '3', '4']
+<img width="469" height="190" alt="image" src="https://github.com/user-attachments/assets/d440c662-62a5-4633-b978-dc38fa05105f" />
+
 
 <hr>
 <h3>Result:</h3>
